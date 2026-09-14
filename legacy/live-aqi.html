@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live AQI &amp; IAQ Monitor — Real-time Air Quality Dashboard | VayuGuard</title>
+  <meta name="description" content="See live outdoor AQI and simulated indoor IAQ from VayuView monitors — PM2.5, PM10, CO₂, TVOC, temperature and humidity in real time." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <link rel="stylesheet" href="assets/css/home.css" />
+  <link rel="stylesheet" href="assets/css/pages.css" />
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body data-page="live-aqi">
+
+  <header class="site-header"></header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumbs"><a href="index.html">Home</a> / Live AQI</div>
+      <span class="section-kicker">Live Air Quality</span>
+      <h1>Know your air, <span class="accent">every second</span></h1>
+      <p class="lede">Outdoor AQI for Delhi NCR plus live indoor readings from the VayuView monitor network — the same dashboard our clients get with every deployment.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="container">
+
+      <div class="aqi-board reveal">
+        <div class="aqi-gauge">
+          <div class="gauge-circle" id="gauge">
+            <div class="gauge-value">
+              <div class="gv-num" id="aqiNum">—</div>
+              <div class="gv-label">Outdoor AQI</div>
+            </div>
+          </div>
+          <p class="aqi-note" id="aqiNote">Fetching latest Delhi NCR reading…</p>
+        </div>
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:18px; flex-wrap:wrap; gap:8px;">
+            <h2 style="font-size:1.4rem;">Indoor — VayuView Demo Unit</h2>
+            <span class="chip" id="liveChip"><span style="width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block;"></span> Live</span>
+          </div>
+          <div class="pollutant-list">
+            <div class="pollutant">
+              <div class="p-head"><span class="p-name">PM2.5</span><span><span class="p-val" id="pm25">—</span> <span class="p-unit">µg/m³</span></span></div>
+              <div class="p-bar"><span id="pm25Bar" style="--bar-color:#22c55e; width:0%"></span></div>
+              <div class="p-status" id="pm25Status">—</div>
+            </div>
+            <div class="pollutant">
+              <div class="p-head"><span class="p-name">PM10</span><span><span class="p-val" id="pm10">—</span> <span class="p-unit">µg/m³</span></span></div>
+              <div class="p-bar"><span id="pm10Bar" style="--bar-color:#22c55e; width:0%"></span></div>
+              <div class="p-status" id="pm10Status">—</div>
+            </div>
+            <div class="pollutant">
+              <div class="p-head"><span class="p-name">CO₂</span><span><span class="p-val" id="co2">—</span> <span class="p-unit">ppm</span></span></div>
+              <div class="p-bar"><span id="co2Bar" style="--bar-color:#22c55e; width:0%"></span></div>
+              <div class="p-status" id="co2Status">—</div>
+            </div>
+            <div class="pollutant">
+              <div class="p-head"><span class="p-name">TVOC</span><span><span class="p-val" id="tvoc">—</span> <span class="p-unit">ppb</span></span></div>
+              <div class="p-bar"><span id="tvocBar" style="--bar-color:#22c55e; width:0%"></span></div>
+              <div class="p-status" id="tvocStatus">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-banner reveal">
+        <strong>Demo mode:</strong> indoor values are simulated to show how a VayuView dashboard behaves. Outdoor AQI is indicative data for Delhi NCR. Deploy a real monitor — <a href="contact.html" style="color:var(--green-700); font-weight:700;">talk to us →</a>
+      </div>
+
+      <div class="aqi-scale-card reveal">
+        <h3 style="margin-bottom:18px;">Understanding the AQI scale</h3>
+        <div class="aqi-scale">
+          <div class="scale-step s0"><div class="s-range">0–50</div><div class="s-label">Good</div></div>
+          <div class="scale-step s1"><div class="s-range">51–100</div><div class="s-label">Satisfactory</div></div>
+          <div class="scale-step s2"><div class="s-range">101–200</div><div class="s-label">Moderate</div></div>
+          <div class="scale-step s3"><div class="s-range">201–300</div><div class="s-label">Poor</div></div>
+          <div class="scale-step s4"><div class="s-range">301–400</div><div class="s-label">Very Poor</div></div>
+          <div class="scale-step s5"><div class="s-range">401+</div><div class="s-label">Severe</div></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-head center" style="margin-bottom:40px;">
+        <span class="section-kicker section-kicker--light">VayuView Network</span>
+        <h2>Monitoring that closes the loop</h2>
+        <p>Every VayuGuard deployment includes live IAQ monitoring — so purification is verified, not assumed.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+          <div class="card-icon" style="background:rgba(255,255,255,0.1); color:#7ce0b4;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 12 4-4 5 5 4-4 5 5"/><path d="M3 18h18"/></svg></div>
+          <h3>Real-time dashboards</h3><p>PM2.5, PM10, CO₂, TVOC, temperature and humidity streamed every few seconds.</p>
+        </div>
+        <div class="card reveal reveal-d1" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+          <div class="card-icon" style="background:rgba(255,255,255,0.1); color:#7ce0b4;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10.3 21a2 2 0 0 0 3.4 0"/></svg></div>
+          <h3>Smart alerts</h3><p>Get notified the moment any room drifts out of its healthy range — before occupants complain.</p>
+        </div>
+        <div class="card reveal reveal-d2" style="background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.12);">
+          <div class="card-icon" style="background:rgba(255,255,255,0.1); color:#7ce0b4;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></div>
+          <h3>Remote device control</h3><p>Adjust purification modes across sites from one console. BMS and API integration supported.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"></footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const gauge = document.getElementById("gauge");
+      const num = document.getElementById("aqiNum");
+      const note = document.getElementById("aqiNote");
+
+      const aqiBand = (a) => {
+        if (a <= 50) return { c: "#22c55e", l: "Good" };
+        if (a <= 100) return { c: "#84cc16", l: "Satisfactory" };
+        if (a <= 200) return { c: "#eab308", l: "Moderate" };
+        if (a <= 300) return { c: "#f97316", l: "Poor" };
+        if (a <= 400) return { c: "#ef4444", l: "Very Poor" };
+        return { c: "#7f1d1d", l: "Severe" };
+      };
+
+      // Outdoor AQI (indicative, gently varies)
+      let outdoor = 165;
+      const renderOutdoor = () => {
+        outdoor = Math.max(40, Math.min(320, outdoor + (Math.random() * 8 - 4)));
+        const b = aqiBand(outdoor);
+        num.textContent = Math.round(outdoor);
+        num.style.color = b.c;
+        gauge.style.setProperty("--gauge-color", b.c);
+        const pct = Math.min(outdoor / 500 * 100, 100);
+        gauge.style.background = `conic-gradient(${b.c} 0 ${pct}%, #eef2f0 ${pct}% 100%)`;
+        note.textContent = `Delhi NCR — ${b.l}. Measure outdoor air before planning indoor strategies.`;
+      };
+      renderOutdoor();
+      setInterval(renderOutdoor, 5000);
+
+      // Indoor simulated VayuView feed
+      const sensors = [
+        { id: "pm25", min: 8, max: 35, unit: "µg/m³", good: 35, bar: "pm25Bar", status: "pm25Status", fmt: (v) => Math.round(v) },
+        { id: "pm10", min: 15, max: 60, unit: "µg/m³", good: 60, bar: "pm10Bar", status: "pm10Status", fmt: (v) => Math.round(v) },
+        { id: "co2", min: 420, max: 700, unit: "ppm", good: 800, bar: "co2Bar", status: "co2Status", fmt: (v) => Math.round(v) },
+        { id: "tvoc", min: 40, max: 180, unit: "ppb", good: 250, bar: "tvocBar", status: "tvocStatus", fmt: (v) => Math.round(v) },
+      ];
+      const state = Object.fromEntries(sensors.map(s => [s.id, (s.min + s.max) / 2]));
+
+      const renderIndoor = () => {
+        sensors.forEach((s) => {
+          const v = state[s.id];
+          state[s.id] = Math.max(s.min, Math.min(s.max, v + (Math.random() * (s.max - s.min) * 0.08 - (s.max - s.min) * 0.04)));
+          const shown = state[s.id];
+          const el = document.getElementById(s.id);
+          el.textContent = s.fmt(shown);
+          const pct = Math.min(shown / (s.good * 1.6) * 100, 100);
+          const bar = document.getElementById(s.bar);
+          const ok = shown <= s.good;
+          bar.style.background = ok ? "#22c55e" : "#f97316";
+          bar.style.width = pct + "%";
+          document.getElementById(s.status).textContent = ok ? "Within healthy range" : "Above healthy range";
+          document.getElementById(s.status).style.color = ok ? "#16a34a" : "#ea580c";
+        });
+      };
+      renderIndoor();
+      setInterval(renderIndoor, 3000);
+    });
+  </script>
+</body>
+</html>

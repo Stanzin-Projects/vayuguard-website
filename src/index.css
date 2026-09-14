@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply font-sans text-ink-900 bg-white antialiased;
+  }
+  ::selection { @apply bg-forest-200 text-forest-900; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { @apply bg-forest-50; }
+  ::-webkit-scrollbar-thumb { @apply bg-forest-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-forest-400; }
+}
+
+@layer components {
+  .container-x { @apply w-[min(1220px,92%)] mx-auto; }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 font-bold text-[0.95rem]
+           px-6 py-3.5 rounded-full transition-all duration-200 cursor-pointer;
+  }
+  .btn svg { @apply w-[18px] h-[18px]; }
+  .btn-primary {
+    @apply btn bg-forest-700 text-white shadow-lg shadow-forest-700/30
+           hover:bg-forest-800 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-forest-700/40;
+  }
+  .btn-ghost {
+    @apply btn bg-white text-ink-900 border-[1.5px] border-gray-200 shadow-sm
+           hover:border-forest-600 hover:text-forest-700 hover:-translate-y-0.5;
+  }
+  .btn-white { @apply btn bg-white text-forest-800 hover:-translate-y-0.5 hover:shadow-xl; }
+  .btn-outline-light {
+    @apply btn bg-transparent text-white border-[1.5px] border-white/50 hover:bg-white/10;
+  }
+  .btn-sm { @apply px-4 py-2.5 text-[0.85rem]; }
+
+  .kicker {
+    @apply inline-flex items-center gap-2 bg-forest-100 text-forest-800
+           border border-forest-600/20 text-[0.72rem] font-bold tracking-[0.14em] uppercase
+           px-4 py-2 rounded-full;
+  }
+  .kicker-light {
+    @apply bg-white/10 border-white/25 text-forest-50;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 bg-forest-100 text-forest-800
+           text-[0.78rem] font-bold px-3 py-1.5 rounded-full;
+  }
+  .chip-white { @apply bg-white/15 text-forest-50; }
+
+  .card {
+    @apply bg-white border border-gray-200/80 rounded-2xl p-7
+           transition-all duration-200
+           hover:-translate-y-1 hover:shadow-xl hover:shadow-forest-900/10 hover:border-forest-600/25;
+  }
+  .card-icon {
+    @apply w-12 h-12 rounded-xl bg-forest-100 text-forest-700 grid place-items-center mb-4;
+  }
+  .card-icon svg { @apply w-[22px] h-[22px]; }
+
+  .section { @apply py-20; }
+  .section-mint { @apply bg-gradient-to-b from-forest-50 to-white; }
+  .section-dark {
+    @apply bg-gradient-to-b from-forest-900 to-forest-950 text-forest-100;
+  }
+}
+
+/* Perspective helper for 3D cards */
+.perspective-1200 { perspective: 1200px; }
+.preserve-3d { transform-style: preserve-3d; }
+
+/* ---------- Ambient hero animation layer ---------- */
+
+/* Zig-zag fall: the leaf rocks left/right like a pendulum as it glides down-right */
+@keyframes leafFall {
+  0%   { transform: translate3d(0, -14vh, 0) rotate(-26deg); }
+  18%  { transform: translate3d(3.5vw, 15vh, 0) rotate(30deg); }
+  38%  { transform: translate3d(1vw, 38vh, 0) rotate(-16deg); }
+  58%  { transform: translate3d(5.5vw, 61vh, 0) rotate(34deg); }
+  78%  { transform: translate3d(2.5vw, 85vh, 0) rotate(-14deg); }
+  100% { transform: translate3d(8.5vw, 114vh, 0) rotate(22deg); }
+}
+
+.leaf-fall {
+  position: absolute;
+  top: 0;
+  animation: leafFall var(--leaf-dur, 18s) linear infinite;
+  animation-delay: var(--leaf-delay, 0s);
+  will-change: transform;
+}
+
+/* Tumble: the leaf cartwheels over its short edge (3D flip) while rocking */
+@keyframes leafTumble {
+  0%   { transform: perspective(520px) rotateX(0deg) rotateZ(0deg); }
+  30%  { transform: perspective(520px) rotateX(72deg) rotateZ(9deg); }
+  55%  { transform: perspective(520px) rotateX(183deg) rotateZ(-7deg); }
+  80%  { transform: perspective(520px) rotateX(262deg) rotateZ(6deg); }
+  100% { transform: perspective(520px) rotateX(360deg) rotateZ(0deg); }
+}
+
+.leaf-fall > svg {
+  animation: leafTumble var(--leaf-tumble, 5s) linear infinite;
+  animation-delay: var(--leaf-tumble-delay, 0s);
+}
+
+/* Flowing air-stream ribbons that drift left-to-right like purified air */
+.air-stream {
+  position: absolute;
+  height: 2px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(20, 128, 93, 0.35),
+    rgba(77, 161, 126, 0.12),
+    transparent
+  );
+  animation: airFlow var(--stream-dur, 11s) ease-in-out infinite;
+  animation-delay: var(--stream-delay, 0s);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+@keyframes airFlow {
+  0%   { transform: translateX(-22%) scaleX(0.6); opacity: 0; }
+  18%  { opacity: 1; }
+  55%  { opacity: 0.85; }
+  100% { transform: translateX(26%) scaleX(1.15); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaf-fall, .leaf-fall > svg, .air-stream { animation: none; }
+  .air-stream { opacity: 0.5; }
+}
