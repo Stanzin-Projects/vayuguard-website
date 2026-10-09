@@ -10,7 +10,7 @@ function SolutionRow({ s, index }) {
     <div id={s.id} className="grid scroll-mt-28 items-center gap-10 border-b border-gray-100 py-14 last:border-0 lg:grid-cols-2">
       <Reveal className={flip ? 'lg:order-2' : ''}>
         <div
-          className="relative flex min-h-[300px] items-end overflow-hidden rounded-3xl p-8 shadow-xl shadow-forest-900/15"
+          className="relative flex min-h-[300px] items-end overflow-hidden rounded-3xl p-8 shadow-xl shadow-flame-900/15"
           style={{ background: `linear-gradient(150deg, ${s.a}, ${s.b})` }}
         >
           <span className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.2),transparent_70%)]" />
@@ -30,7 +30,7 @@ function SolutionRow({ s, index }) {
         <ul className="mt-5 grid gap-2.5">
           {s.points.map((pt) => (
             <li key={pt} className="flex items-start gap-2.5 text-[0.94rem] text-ink-700">
-              <Icon.Check className="mt-0.5 h-[18px] w-[18px] shrink-0 text-forest-600" /> {pt}
+              <Icon.Check className="mt-0.5 h-[18px] w-[18px] shrink-0 text-flame-600" /> {pt}
             </li>
           ))}
         </ul>
@@ -45,10 +45,18 @@ export default function Solutions() {
     <>
       <PageHero
         kicker="Solutions"
-        title={<>Clean air for <span className="text-forest-600">every environment</span></>}
+        title={<>Clean air for <span className="text-flame-600">every environment</span></>}
         lede="From bedrooms to hospital wards, our engineers size the right hybrid system for your space, occupancy and usage patterns."
         crumbs={[['Solutions']]}
       />
+
+      {/* answer-first summary for search engines & AI assistants */}
+      <section className="container-x pt-10">
+        <p className="max-w-4xl text-[0.98rem] leading-relaxed text-ink-500">
+          VayuGuard engineers clean air for every environment: homes and apartments get VayuShield AC modules and HRAC room units; offices get HCAC in-duct purification across AHUs with live dashboards; hospitals get UVGI and washable filtration for NABH-aligned infection control; schools get phased classroom rollouts with AQI displays; hotels get odour-free HVAC loops; and industry gets dust, fume and odour control at scale. Send your floor plan for a free assessment and a hybrid configuration scoped to your space.
+        </p>
+      </section>
+
       <section className="container-x">
         {SOLUTIONS.map((s, i) => <SolutionRow key={s.id} s={s} index={i} />)}
       </section>

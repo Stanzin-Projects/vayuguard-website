@@ -1,13 +1,18 @@
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Reveal, CountUp, TiltCard, FallingLeaves, AirStreams } from '../components/motion.jsx'
-import { Icon, BrandMark } from '../components/Icon.jsx'
-import { SectionHead, CtaBand, MiniUnit } from '../components/ui.jsx'
-import { STATS, PRODUCTS, SOLUTIONS } from '../components/data.jsx'
+import { Reveal, TiltCard, FallingLeaves, AirStreams } from '../components/motion.jsx'
+import { Icon } from '../components/Icon.jsx'
+import { SectionHead, CtaBand } from '../components/ui.jsx'
+import { STATS, SOLUTIONS } from '../components/data.jsx'
+import { PRODUCTS } from '../data/catalog.js'
+import FlipCard from '../components/FlipCard.jsx'
+import Faq from '../components/Faq.jsx'
+import { FAQS_HOME } from '../data/catalog.js'
 
 /* ---------- Hero ---------- */
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(1100px_520px_at_78%_8%,rgba(20,128,93,0.16),transparent_62%),radial-gradient(700px_420px_at_-6%_90%,rgba(20,128,93,0.1),transparent_60%),linear-gradient(180deg,#eef8f2,#f7fbf9)]">
+    <section className="relative overflow-hidden bg-[radial-gradient(1100px_520px_at_78%_8%,rgba(224,118,87,0.18),transparent_62%),radial-gradient(700px_420px_at_-6%_90%,rgba(224,118,87,0.12),transparent_60%),linear-gradient(180deg,#fff8f5,#fefbf9)]">
       {/* ambient animation layers: falling leaves + flowing air streams */}
       <FallingLeaves count={9} />
       <AirStreams count={5} />
@@ -16,13 +21,16 @@ function Hero() {
         <div>
           <Reveal><span className="kicker">Patented Climate Technology • India</span></Reveal>
           <Reveal delay={1}>
-            <h1 className="mt-6 text-5xl font-extrabold leading-[1.05] tracking-tight md:text-6xl">
-              Breathe <span className="text-forest-600">Pure.</span><br />Live <span className="text-forest-600">Better.</span>
+            <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+              Breathe <span className="text-flame-600">Pure.</span><br />Live <span className="text-flame-600">Better.</span>
             </h1>
           </Reveal>
           <Reveal delay={2}>
             <p className="mt-6 max-w-lg text-lg text-ink-500">
               Advanced air purification solutions for a healthier tomorrow. Hybrid HVAC air cleaners, UVGI systems, IAQ monitors and more — engineered for Delhi NCR's toughest air.
+            </p>
+            <p className="mt-3 max-w-lg text-[0.93rem] leading-relaxed text-ink-500/90">
+              VayuGuard is a Make-in-India air purification company. Its patented HCAC hybrid central air cleaner treats air inside HVAC ducts and AHUs, VayuShield turns existing split and cassette ACs into purifiers, and UVGI, Plasm-ION and live IAQ monitoring complete whole-building clean-air systems for homes, offices, hospitals and schools across Delhi NCR and India.
             </p>
           </Reveal>
           <Reveal delay={3}>
@@ -36,10 +44,22 @@ function Hero() {
           <Reveal delay={4}>
             <div className="mt-12 flex flex-wrap items-center gap-6">
               <span className="text-sm font-semibold text-ink-400">Trusted by</span>
-              <div className="flex flex-wrap items-center gap-5 text-lg font-extrabold text-[#6d7d75]/75">
-                {['DLF', 'wework', 'TATA', 'MAX Healthcare', 'Fortis'].map((b) => (
-                  <span key={b} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-sm bg-forest-300" />{b}
+              <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
+                {[
+                  { name: 'DLF', src: '/logos/dlf.svg' },
+                  { name: 'WeWork', src: '/logos/wework.svg' },
+                  { name: 'Tata', src: '/logos/tata.svg' },
+                  { name: 'Max Healthcare', src: '/logos/max-healthcare.svg' },
+                  { name: 'Fortis', src: '/logos/fortis.svg' },
+                ].map((b) => (
+                  <span key={b.name} className="flex items-center">
+                    <img
+                      src={b.src}
+                      alt={`${b.name} logo`}
+                      title={b.name}
+                      loading="lazy"
+                      className="h-8 w-auto max-w-[92px] object-contain opacity-70 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 focus-visible:opacity-100 focus-visible:grayscale-0"
+                    />
                   </span>
                 ))}
               </div>
@@ -47,48 +67,79 @@ function Hero() {
           </Reveal>
         </div>
 
-        {/* 3D hero visual */}
+        {/* hero visual: green-themed product showcase video */}
         <Reveal delay={2} className="relative">
-          <TiltCard max={9} className="relative mx-auto aspect-[4/5] w-full max-w-[460px]">
-            {/* arch backdrop */}
-            <div className="absolute inset-x-[11%] top-0 h-[82%] rounded-t-full rounded-b-3xl bg-[radial-gradient(120%_90%_at_50%_0%,#dcefe4_0%,#bfe0cf_45%,#9dcdb6_100%)] shadow-2xl shadow-forest-900/25">
-              <div className="absolute inset-0 rounded-t-full rounded-b-3xl bg-[radial-gradient(60%_42%_at_68%_22%,rgba(255,255,255,0.85),transparent_60%),radial-gradient(90%_55%_at_20%_95%,rgba(11,61,46,0.35),transparent_65%),radial-gradient(70%_40%_at_80%_90%,rgba(11,61,46,0.28),transparent_60%)]" />
-              <div className="absolute inset-x-0 bottom-0 h-[46%] rounded-b-3xl bg-[radial-gradient(45%_70%_at_24%_100%,rgba(13,74,52,0.55),transparent_70%),radial-gradient(50%_80%_at_60%_108%,rgba(13,74,52,0.4),transparent_70%),radial-gradient(40%_60%_at_88%_100%,rgba(13,74,52,0.45),transparent_70%)]" />
-            </div>
-
-            {/* purifier */}
-            <div className="absolute bottom-[10%] left-1/2 w-[46%] -translate-x-1/2 animate-floaty rounded-2xl border border-white/80 bg-gradient-to-br from-white via-gray-100 to-gray-300 p-6 shadow-[0_30px_60px_rgba(11,61,46,0.3)]">
-              <div className="absolute -left-3 -top-3 grid h-11 w-11 place-items-center rounded-xl bg-white shadow-md">
-                <BrandMark className="h-7 w-7" />
-              </div>
-              <div className="relative h-28 overflow-hidden rounded-lg bg-[repeating-linear-gradient(90deg,#16211c_0_6px,#242f29_6px_8px)] shadow-inner">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-white/10" />
-              </div>
-              <div className="relative mt-3.5 h-28 overflow-hidden rounded-lg bg-[repeating-linear-gradient(90deg,#16211c_0_6px,#242f29_6px_8px)] shadow-inner">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-white/10" />
-              </div>
-              <div className="mt-4 h-2.5 rounded-md bg-gradient-to-r from-ink-900 to-[#2a3831]" />
-            </div>
-
-            {/* orbiting ion rings */}
-            <div className="pointer-events-none absolute left-1/2 top-[38%] h-64 w-64 -translate-x-1/2 -translate-y-1/2 animate-spinSlow rounded-full border border-dashed border-forest-600/25" />
-            <div className="pointer-events-none absolute left-1/2 top-[38%] h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full border border-forest-600/20" />
-
-            {/* floating chips */}
-            <FloatChip className="-left-2 top-[8%] md:-left-6" icon={<Icon.Sun />} title="Removes 99.97%" sub="of PM2.5 & Pollutants" delay="" />
-            <FloatChip className="-right-2 top-[36%] md:-right-6" icon={<Icon.Bulb />} title="UVGI Technology" sub="Kills Airborne Pathogens" delay="[animation-delay:1.2s]" />
-            <FloatChip className="bottom-[6%] right-0" icon={<Icon.Target />} title="Real-time AQI" sub="Monitor & Control" delay="[animation-delay:2.2s]" />
-          </TiltCard>
+          <HeroVisual />
         </Reveal>
       </div>
     </section>
   )
 }
 
+/* ---------- hero visual: green-themed product showcase video in the signature arch ---------- */
+function useReducedMotion() {
+  const [reduced, setReduced] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const onChange = (e) => setReduced(e.matches)
+    mq.addEventListener?.('change', onChange)
+    return () => mq.removeEventListener?.('change', onChange)
+  }, [])
+  return reduced
+}
+
+function HeroVisual() {
+  const reducedMotion = useReducedMotion()
+  const videoRef = useRef(null)
+  /* autoplay can be deferred while the video sits below the fold on phones —
+     start it as soon as it scrolls into view (and pause it again off-screen) */
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v || reducedMotion) return
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) v.play().catch(() => {})
+        else v.pause()
+      },
+      { threshold: 0.2 }
+    )
+    io.observe(v)
+    return () => io.disconnect()
+  }, [reducedMotion])
+  return (
+    <div className="relative mx-auto aspect-square w-full max-w-[520px]">
+      {/* arch frame holding the recoloured showcase video */}
+      <div className="absolute inset-0 overflow-hidden rounded-t-[10rem] rounded-b-[2rem] border border-white/70 bg-flame-950 shadow-[0_40px_80px_rgba(70,25,10,0.25)]">
+        <video
+          ref={videoRef}
+          className="h-full w-full object-cover object-center"
+          src="/hero-showcase.mp4"
+          poster="/hero-showcase-poster.jpg"
+          autoPlay={!reducedMotion}
+          muted
+          loop
+          playsInline
+          preload="auto"
+          tabIndex={-1}
+          aria-hidden="true"
+        />
+        {/* soft brand tint so the footage sits inside the light theme */}
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(224,118,87,0.2),transparent_32%,transparent_64%,rgba(61,22,12,0.45))]" />
+      </div>
+
+      {/* floating chips */}
+      <FloatChip className="-left-2 top-[8%] max-w-[200px] md:max-w-none md:-left-6" icon={<Icon.Sun />} title="Advanced Purification" sub="of PM2.5 & Pollutants" delay="" />
+      <FloatChip className="-right-2 top-[36%] max-w-[200px] md:max-w-none md:-right-6" icon={<Icon.Bulb />} title="UVGI Technology" sub="Kills Airborne Pathogens" delay="[animation-delay:1.2s]" />
+      <FloatChip className="bottom-[6%] right-0 max-w-[200px] md:max-w-none" icon={<Icon.Target />} title="Real-time AQI" sub="Monitor & Control" delay="[animation-delay:2.2s]" />
+    </div>
+  )
+}
+
 function FloatChip({ icon, title, sub, className = '', delay = '' }) {
   return (
-    <div className={`absolute z-10 flex items-center gap-3 rounded-2xl border border-white/90 bg-white/90 px-4 py-3 shadow-lg shadow-forest-900/10 backdrop-blur animate-floaty ${delay} ${className}`}>
-      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-forest-100 text-forest-700 [&>svg]:h-[18px] [&>svg]:w-[18px]">{icon}</span>
+    <div className={`absolute z-10 flex items-center gap-3 rounded-2xl border border-white/90 bg-white/90 px-4 py-3 shadow-lg shadow-flame-900/10 backdrop-blur animate-floaty ${delay} ${className}`}>
+      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-flame-100 text-flame-700 [&>svg]:h-[18px] [&>svg]:w-[18px]">{icon}</span>
       <span>
         <strong className="block text-[0.88rem] text-ink-900">{title}</strong>
         <span className="block text-[0.74rem] text-ink-500">{sub}</span>
@@ -109,10 +160,10 @@ function FeatureStrip() {
   return (
     <section className="container-x relative z-10 -mt-12">
       <Reveal>
-        <div className="grid overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-2xl shadow-forest-900/10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-2xl shadow-flame-900/10 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map((f) => (
-            <div key={f.title} className="group flex gap-4 border-gray-100 p-7 transition-colors hover:bg-forest-50 sm:[&:nth-child(odd)]:border-r lg:border-r lg:last:border-r-0">
-              <span className="grid h-[52px] w-[52px] shrink-0 place-items-center rounded-full bg-forest-100 text-forest-700 transition-transform duration-300 group-hover:scale-110 [&>svg]:h-6 [&>svg]:w-6">
+            <div key={f.title} className="group flex gap-4 border-gray-100 p-7 transition-colors hover:bg-flame-50 sm:[&:nth-child(odd)]:border-r lg:border-r lg:last:border-r-0">
+              <span className="grid h-[52px] w-[52px] shrink-0 place-items-center rounded-full bg-flame-100 text-flame-700 transition-transform duration-300 group-hover:scale-110 [&>svg]:h-6 [&>svg]:w-6">
                 <f.icon />
               </span>
               <div>
@@ -130,7 +181,7 @@ function FeatureStrip() {
 /* ---------- Impact stats ---------- */
 function Impact() {
   return (
-    <section className="section bg-gradient-to-b from-[#f2faf6] to-white">
+    <section className="section bg-gradient-to-b from-[#fdf7f3] to-white">
       <div className="container-x">
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_2.2fr]">
           <Reveal>
@@ -141,14 +192,10 @@ function Impact() {
           <div className="grid grid-cols-2 gap-y-8 lg:grid-cols-4">
             {STATS.map((s, i) => (
               <Reveal key={s.label} delay={i} className="border-ink-200/60 text-center lg:border-r lg:last:border-r-0">
-                <span className="mx-auto mb-4 grid h-[52px] w-[52px] place-items-center rounded-full bg-forest-100 text-forest-700 [&>svg]:h-6 [&>svg]:w-6">
+                <span className="mx-auto mb-4 grid h-[52px] w-[52px] place-items-center rounded-full bg-flame-100 text-flame-700 [&>svg]:h-6 [&>svg]:w-6">
                   <s.icon />
                 </span>
-                <div className="text-[2.1rem] font-extrabold leading-none tracking-tight">
-                  {s.value != null
-                    ? <CountUp value={s.value} decimals={s.decimals || 0} suffix={s.suffix} />
-                    : s.display}
-                </div>
+                <div className="text-[2.1rem] font-extrabold leading-none tracking-tight">{s.display}</div>
                 <div className="mt-2 text-[0.88rem] text-ink-500">{s.label}</div>
               </Reveal>
             ))}
@@ -166,41 +213,68 @@ const TECH = [
   { icon: Icon.Ion, title: 'Plasm-ION Bipolar Ionization', body: 'UL-certified ions cluster around PM0.1, VOCs and odours, dropping them out of the air you breathe.' },
 ]
 
+/* Product photos shown around the 3D drum (real HCAC unit views). */
+const TECH_VIEWS = [
+  { src: '/tech-carousel/view-1.webp', label: 'HCAC duct unit' },
+  { src: '/tech-carousel/view-2.webp', label: 'HCAC media frame' },
+  { src: '/tech-carousel/view-3.webp', label: 'HCAC AHU cabinets' },
+  { src: '/products/hcac-a-1000-app.webp', label: 'Installed in AHU' },
+  { src: '/products/hcac-slim.webp', label: 'HCAC Slim' },
+  { src: '/products/fcu-hcac.webp', label: 'FCU-HCAC' },
+]
+
+function TechDrum() {
+  const n = TECH_VIEWS.length
+  return (
+    <div className="tech-carousel relative mx-auto grid h-[420px] w-full max-w-[460px] cursor-grab place-items-center overflow-hidden rounded-3xl bg-gradient-to-br from-flame-800 to-flame-950 shadow-2xl" tabIndex={0} aria-label="Rotating views of the HCAC product range">
+      <span className="absolute h-[300px] w-[300px] rounded-full border border-white/10" />
+      <span className="absolute h-[430px] w-[430px] animate-spinSlow rounded-full border border-dashed border-white/15" />
+      <span className="absolute h-[560px] w-[560px] rounded-full border border-white/10" />
+
+      {/* soft glow behind the drum */}
+      <div className="pointer-events-none absolute h-64 w-64 rounded-full bg-flame-400/15 blur-3xl" />
+
+      {/* the rotating drum — each face sits 60° apart on a cylinder */}
+      <div
+        className="tech-drum"
+        style={{
+          '--drum-w': '230px',
+          '--drum-h': '310px',
+        }}
+      >
+        {TECH_VIEWS.map((v, i) => (
+          <div
+            key={v.src}
+            className="tech-face"
+            style={{ transform: `rotateY(${(360 / n) * i}deg) translateZ(190px)` }}
+            aria-label={v.label}
+          >
+            <img src={v.src} alt={v.label} loading="lazy" />
+          </div>
+        ))}
+      </div>
+
+      <OrbitPill className="left-[6%] top-[14%]" label="HCAC Hybrid Filtration" />
+      <OrbitPill className="right-[5%] top-[46%]" label="UV-C Germicidal" />
+      <OrbitPill className="bottom-[10%] left-[18%]" label="Plasm-ION Bipolar" />
+    </div>
+  )
+}
+
 function Technology() {
   return (
     <section className="section section-dark relative overflow-hidden">
-      <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-emerald-400/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 top-0 h-96 w-96 rounded-full bg-flame-400/10 blur-3xl" />
       <div className="container-x grid items-center gap-14 lg:grid-cols-2">
         <Reveal>
-          <TiltCard max={12} glare={false} className="relative mx-auto grid h-[420px] w-full max-w-[460px] place-items-center overflow-hidden rounded-3xl bg-gradient-to-br from-forest-800 to-forest-950 shadow-2xl">
-            <span className="absolute h-[300px] w-[300px] rounded-full border border-white/10" />
-            <span className="absolute h-[430px] w-[430px] animate-spinSlow rounded-full border border-dashed border-white/15" />
-            <span className="absolute h-[560px] w-[560px] rounded-full border border-white/10" />
-
-            {/* glowing core */}
-            <div className="relative z-10 w-[200px] rounded-2xl bg-gradient-to-br from-white to-gray-200 p-5 shadow-[0_24px_50px_rgba(0,0,0,0.4)]">
-              <div className="relative h-20 overflow-hidden rounded-lg bg-[repeating-linear-gradient(90deg,#16211c_0_6px,#242f29_6px_8px)]">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/25 to-transparent" />
-              </div>
-              <div className="relative mt-3 h-20 overflow-hidden rounded-lg bg-[repeating-linear-gradient(90deg,#16211c_0_6px,#242f29_6px_8px)]">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/25 to-transparent" />
-              </div>
-              <div className="mt-3 h-2 rounded bg-gradient-to-r from-ink-900 to-[#2a3831]" />
-              {/* pulse rings */}
-              <span className="absolute inset-0 -z-10 rounded-2xl border-2 border-emerald-300/60 animate-pulseRing" />
-            </div>
-
-            <OrbitPill className="left-[8%] top-[16%]" label="HCAC Hybrid Filtration" />
-            <OrbitPill className="right-[6%] top-[44%]" label="UV-C Germicidal" />
-            <OrbitPill className="bottom-[12%] left-[20%]" label="Plasm-ION Bipolar" />
-          </TiltCard>
+          <TechDrum />
         </Reveal>
 
         <div>
           <Reveal>
             <span className="kicker kicker-light">Patented Technology</span>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-white md:text-4xl">One System. Three Layers of Defence.</h2>
-            <p className="mt-4 text-forest-100/80">
+            <p className="mt-4 text-flame-100/80">
               VayuGuard's patented hybrid platform combines mechanical filtration, germicidal UV-C and bipolar ionization inside your existing HVAC — so every breath passes through all three.
             </p>
           </Reveal>
@@ -208,10 +282,10 @@ function Technology() {
             {TECH.map((t, i) => (
               <Reveal key={t.title} delay={i + 1}>
                 <li className="flex gap-4">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-forest-100 text-forest-700 [&>svg]:h-[21px] [&>svg]:w-[21px]"><t.icon /></span>
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-flame-100 text-flame-700 [&>svg]:h-[21px] [&>svg]:w-[21px]"><t.icon /></span>
                   <div>
                     <h3 className="text-[1.02rem] font-extrabold text-white">{t.title}</h3>
-                    <p className="mt-1 text-[0.92rem] text-forest-100/70">{t.body}</p>
+                    <p className="mt-1 text-[0.92rem] text-flame-100/70">{t.body}</p>
                   </div>
                 </li>
               </Reveal>
@@ -226,41 +300,28 @@ function Technology() {
 
 function OrbitPill({ label, className = '' }) {
   return (
-    <span className={`absolute z-20 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-2 text-[0.76rem] font-bold text-forest-50 backdrop-blur ${className}`}>
-      <span className="h-2 w-2 rounded-full bg-emerald-400" />{label}
+    <span className={`absolute z-20 flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-2 text-[0.76rem] font-bold text-flame-50 backdrop-blur ${className}`}>
+      <span className="h-2 w-2 rounded-full bg-flame-400" />{label}
     </span>
   )
 }
 
 /* ---------- Products preview ---------- */
 function ProductsPreview() {
-  const featured = PRODUCTS.slice(0, 3)
+  const featured = ['hcac-a-1000', 'vayushield-split', 'vayuview-indoor']
+    .map((id) => PRODUCTS.find((p) => p.id === id))
+    .filter(Boolean)
   return (
     <section className="section">
       <div className="container-x">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
-          <SectionHead kicker="Product Catalogue" title={<>Purification for <span className="text-forest-600">Every Air Problem</span></>} />
+          <SectionHead kicker="Product Catalogue" title={<>Purification for <span className="text-flame-600">Every Air Problem</span></>} />
           <Reveal delay={2}><Link to="/products" className="btn-ghost">View All Products</Link></Reveal>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((p, i) => (
-            <Reveal key={p.id} delay={i}>
-              <TiltCard max={7} className="h-full rounded-2xl">
-                <Link to="/products" className={`group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-shadow duration-300 hover:shadow-2xl hover:shadow-forest-900/10 ${p.id === 'monitors' ? 'pb-0' : ''}`}>
-                  <div className="relative grid h-44 place-items-center overflow-hidden bg-gradient-to-b from-forest-50 to-[#e8f3ed]">
-                    <div className="absolute h-32 w-32 rounded-full bg-[radial-gradient(circle_at_32%_30%,rgba(255,255,255,0.9),rgba(199,227,213,0.5))] blur-[1px]" />
-                    <MiniUnit shape={p.shape} className="relative transition-transform duration-500 group-hover:-translate-y-2 group-hover:rotate-1" />
-                  </div>
-                  <div className="flex flex-1 flex-col gap-3 p-6">
-                    <span className="chip">{p.tag}</span>
-                    <h3 className="text-lg font-extrabold">{p.name}</h3>
-                    <p className="flex-1 text-[0.9rem] text-ink-500">{p.desc}</p>
-                    <span className="inline-flex items-center gap-2 text-[0.9rem] font-bold text-forest-700">
-                      View specs <Icon.Arrow className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-                    </span>
-                  </div>
-                </Link>
-              </TiltCard>
+            <Reveal key={p.id} delay={i} className="h-full">
+              <FlipCard p={p} />
             </Reveal>
           ))}
         </div>
@@ -272,22 +333,22 @@ function ProductsPreview() {
 /* ---------- Solutions band ---------- */
 function SolutionsBand() {
   return (
-    <section className="section bg-forest-50/40">
+    <section className="section bg-flame-50/40">
       <div className="container-x">
-        <SectionHead center kicker="Solutions" title={<>Clean Air for <span className="text-forest-600">Every Environment</span></>} body="From bedrooms to hospital wards, our engineers size the right hybrid system for your space and usage." />
+        <SectionHead center kicker="Solutions" title={<>Clean Air for <span className="text-flame-600">Every Environment</span></>} body="From bedrooms to hospital wards, our engineers size the right hybrid system for your space and usage." />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SOLUTIONS.map((s, i) => (
             <Reveal key={s.id} delay={i % 3}>
               <TiltCard max={8} className="h-full rounded-2xl">
                 <Link
                   to={`/solutions#${s.id}`}
-                  className="group relative flex h-full min-h-[210px] flex-col justify-end overflow-hidden rounded-2xl border border-white/10 p-7 text-forest-50"
+                  className="group relative flex h-full min-h-[210px] flex-col justify-end overflow-hidden rounded-2xl border border-white/10 p-7 text-flame-50"
                   style={{ background: `linear-gradient(160deg, ${s.a}, ${s.b})` }}
                 >
                   <span className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.22),transparent_70%)] transition-transform duration-500 group-hover:scale-125" />
                   <s.icon className="mb-auto h-10 w-10 transition-transform duration-500 group-hover:-translate-y-1.5 group-hover:scale-110" />
                   <h3 className="mt-6 text-lg font-extrabold text-white">{s.kicker}</h3>
-                  <p className="mt-1 text-[0.88rem] text-forest-100/75">{s.title}</p>
+                  <p className="mt-1 text-[0.88rem] text-flame-100/75">{s.title}</p>
                 </Link>
               </TiltCard>
             </Reveal>
@@ -307,6 +368,12 @@ export default function Home() {
       <Technology />
       <ProductsPreview />
       <SolutionsBand />
+      <Faq
+        faqs={FAQS_HOME}
+        kicker="Clean Air Answers"
+        title="Air purifier questions, answered"
+        body="The questions buyers ask most — answered directly. The full set lives on the products page."
+      />
       <div className="mt-20"><CtaBand /></div>
     </>
   )

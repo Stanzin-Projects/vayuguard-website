@@ -7,11 +7,11 @@
   body {
     @apply font-sans text-ink-900 bg-white antialiased;
   }
-  ::selection { @apply bg-forest-200 text-forest-900; }
+  ::selection { @apply bg-flame-200 text-flame-900; }
   ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { @apply bg-forest-50; }
-  ::-webkit-scrollbar-thumb { @apply bg-forest-300 rounded-full; }
-  ::-webkit-scrollbar-thumb:hover { @apply bg-forest-400; }
+  ::-webkit-scrollbar-track { @apply bg-flame-50; }
+  ::-webkit-scrollbar-thumb { @apply bg-flame-300 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-flame-400; }
 }
 
 @layer components {
@@ -23,48 +23,48 @@
   }
   .btn svg { @apply w-[18px] h-[18px]; }
   .btn-primary {
-    @apply btn bg-forest-700 text-white shadow-lg shadow-forest-700/30
-           hover:bg-forest-800 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-forest-700/40;
+    @apply btn bg-flame-700 text-white shadow-lg shadow-flame-700/30
+           hover:bg-flame-800 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-flame-700/40;
   }
   .btn-ghost {
     @apply btn bg-white text-ink-900 border-[1.5px] border-gray-200 shadow-sm
-           hover:border-forest-600 hover:text-forest-700 hover:-translate-y-0.5;
+           hover:border-flame-600 hover:text-flame-700 hover:-translate-y-0.5;
   }
-  .btn-white { @apply btn bg-white text-forest-800 hover:-translate-y-0.5 hover:shadow-xl; }
+  .btn-white { @apply btn bg-white text-flame-800 hover:-translate-y-0.5 hover:shadow-xl; }
   .btn-outline-light {
     @apply btn bg-transparent text-white border-[1.5px] border-white/50 hover:bg-white/10;
   }
   .btn-sm { @apply px-4 py-2.5 text-[0.85rem]; }
 
   .kicker {
-    @apply inline-flex items-center gap-2 bg-forest-100 text-forest-800
-           border border-forest-600/20 text-[0.72rem] font-bold tracking-[0.14em] uppercase
+    @apply inline-flex items-center gap-2 bg-flame-100 text-flame-800
+           border border-flame-600/20 text-[0.72rem] font-bold tracking-[0.14em] uppercase
            px-4 py-2 rounded-full;
   }
   .kicker-light {
-    @apply bg-white/10 border-white/25 text-forest-50;
+    @apply bg-white/10 border-white/25 text-flame-50;
   }
 
   .chip {
-    @apply inline-flex items-center gap-1.5 bg-forest-100 text-forest-800
+    @apply inline-flex items-center gap-1.5 bg-flame-100 text-flame-800
            text-[0.78rem] font-bold px-3 py-1.5 rounded-full;
   }
-  .chip-white { @apply bg-white/15 text-forest-50; }
+  .chip-white { @apply bg-white/15 text-flame-50; }
 
   .card {
     @apply bg-white border border-gray-200/80 rounded-2xl p-7
            transition-all duration-200
-           hover:-translate-y-1 hover:shadow-xl hover:shadow-forest-900/10 hover:border-forest-600/25;
+           hover:-translate-y-1 hover:shadow-xl hover:shadow-flame-900/10 hover:border-flame-600/25;
   }
   .card-icon {
-    @apply w-12 h-12 rounded-xl bg-forest-100 text-forest-700 grid place-items-center mb-4;
+    @apply w-12 h-12 rounded-xl bg-flame-100 text-flame-700 grid place-items-center mb-4;
   }
   .card-icon svg { @apply w-[22px] h-[22px]; }
 
   .section { @apply py-20; }
-  .section-mint { @apply bg-gradient-to-b from-forest-50 to-white; }
+  .section-mint { @apply bg-gradient-to-b from-flame-50 to-white; }
   .section-dark {
-    @apply bg-gradient-to-b from-forest-900 to-forest-950 text-forest-100;
+    @apply bg-gradient-to-b from-flame-900 to-flame-950 text-flame-100;
   }
 }
 
@@ -114,8 +114,8 @@
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(20, 128, 93, 0.35),
-    rgba(77, 161, 126, 0.12),
+    rgba(224, 118, 87, 0.5),
+    rgba(235, 154, 128, 0.2),
     transparent
   );
   animation: airFlow var(--stream-dur, 11s) ease-in-out infinite;
@@ -134,4 +134,140 @@
 @media (prefers-reduced-motion: reduce) {
   .leaf-fall, .leaf-fall > svg, .air-stream { animation: none; }
   .air-stream { opacity: 0.5; }
+}
+
+/* ---------- No-WebGL hero fallback: same real scene, CSS-driven ---------- */
+@keyframes drift {
+  from { transform: translateX(-1.5%) scale(1.04); }
+  to   { transform: translateX(1.5%) scale(1.07); }
+}
+@keyframes fbPuff {
+  0%   { transform: translateX(0) scale(0.85); opacity: 0; }
+  18%  { opacity: 0.4; }
+  85%  { opacity: 0.22; }
+  100% { transform: translateX(24cqw) scale(1.02); opacity: 0; }
+}
+@keyframes fbClean {
+  0%   { transform: translateX(0) scaleX(0.6); opacity: 0; }
+  18%  { opacity: 0.75; }
+  85%  { opacity: 0.5; }
+  100% { transform: translateX(26cqw) scaleX(1.25); opacity: 0; }
+}
+
+.scene-fallback { container-type: inline-size; background: linear-gradient(180deg, #fff7f2, #ffe4d4); }
+.fb-puff {
+  position: absolute; top: 47%; left: 4%; width: 17%; aspect-ratio: 1/1;
+  background: url('/smoke-puff.webp') center/contain no-repeat;
+  opacity: 0; filter: sepia(0.4) saturate(0.7);
+  animation: fbPuff 7.5s linear infinite;
+}
+.fb-puff-b { top: 40%; width: 12%; animation-delay: 2.6s; animation-duration: 8.5s; }
+.fb-puff-c { top: 55%; width: 14%; animation-delay: 5.1s; animation-duration: 9.5s; }
+.fb-clean {
+  position: absolute; top: 44%; right: 2%; width: 30%; height: 2px;
+  background: linear-gradient(90deg, rgba(224,118,87,0), rgba(224,118,87,0.65), rgba(235,154,128,0.15));
+  border-radius: 9999px; opacity: 0;
+  animation: fbClean 4.5s ease-in-out infinite;
+}
+.fb-clean-b { top: 52%; width: 24%; animation-delay: 2.2s; }
+@media (prefers-reduced-motion: reduce) {
+  .fb-puff, .fb-clean { animation: none; }
+  .fb-puff, .fb-clean { opacity: 0.25; }
+}
+
+/* ── Product quote modal (opened from a card's "Get Quote" button) ── */
+.quote-modal-overlay {
+  background: rgba(40, 14, 5, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: quoteOverlayIn 0.25s ease-out both;
+}
+.quote-modal-panel {
+  animation: quotePanelIn 0.3s cubic-bezier(0.22, 0.85, 0.3, 1) both;
+}
+@keyframes quoteOverlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes quotePanelIn {
+  from { opacity: 0; transform: translateY(18px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.quote-slide-stage { container-type: inline-size; }
+.quote-slide-img { animation: quoteSlideIn 0.35s ease-out both; }
+@keyframes quoteSlideIn {
+  from { opacity: 0; transform: translateX(14px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.quote-thumb img,
+.quote-thumb { flex: 0 0 auto; }
+@media (prefers-reduced-motion: reduce) {
+  .quote-modal-overlay, .quote-modal-panel, .quote-slide-img { animation: none; }
+}
+
+/* ── Technology section: rotating 3D product carousel ──
+   N panels positioned around a cylinder via rotateY(i·360/N) translateZ(R).
+   The drum itself spins slowly; hovering/focusing pauses it. */
+.tech-carousel { perspective: 1400px; }
+.tech-drum {
+  position: relative;
+  width: var(--drum-w, 220px);
+  height: var(--drum-h, 300px);
+  transform-style: preserve-3d;
+  animation: techSpin 36s linear infinite;
+}
+.tech-carousel:hover .tech-drum,
+.tech-carousel:focus-within .tech-drum { animation-play-state: paused; }
+.tech-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+.tech-face img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.5));
+}
+@keyframes techSpin {
+  from { transform: rotateX(-8deg) rotateY(0deg); }
+  to   { transform: rotateX(-8deg) rotateY(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tech-drum { animation: none; transform: rotateX(-8deg); }
+}
+
+/* ── Product flip card: studio photo (front) → installed photo (back) ── */
+.flip-card { perspective: 1400px; }
+.flip-card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.22, 0.85, 0.3, 1);
+}
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+/* The flip itself is driven by the card's .is-flipped class (hover, focus or
+   tap — see FlipCard.jsx). Reduced-motion users get a soft crossfade instead
+   of the 3D rotation. */
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner { transition: opacity 0.4s ease; transform-style: flat; }
+  .flip-card.is-flipped .flip-card-inner { transform: none; }
+  .flip-card-back { transform: none; opacity: 0; transition: opacity 0.4s ease; }
+  .flip-card.is-flipped .flip-card-back { opacity: 1; }
 }

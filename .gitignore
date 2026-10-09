@@ -2,15 +2,4 @@
 node_modules/
 
 # Build output
-dist/
-
-# Logs
-*.log
-*.log.err
-
-# Freebuff workspace metadata
-.freebuff/
-
-# OS / editor
-.DS_Store
-Thumbs.db
+dist

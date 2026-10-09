@@ -6,17 +6,26 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 4173",
     "build": "vite build",
+    "prerender": "cross-env PRERENDER=1 vite build && node scripts/gen-seo-files.mjs",
+    "seo:check": "node scripts/gen-seo-files.mjs",
     "preview": "vite preview --host 127.0.0.1 --port 4173"
   },
   "dependencies": {
+    "@react-three/drei": "^9.114.3",
+    "@react-three/fiber": "^8.17.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "three": "^0.169.0"
   },
   "devDependencies": {
+    "@prerenderer/rollup-plugin": "^0.3.12",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "postcss": "^8.4.49",
+    "puppeteer": "^23.11.1",
+    "sharp": "^0.35.4",
     "tailwindcss": "^3.4.17",
     "vite": "^5.4.11"
   }

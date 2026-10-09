@@ -29,7 +29,7 @@ export default function ForBusiness() {
     <>
       <PageHero
         kicker="For Business"
-        title={<>Enterprise air quality, <span className="text-forest-600">as a program</span></>}
+        title={<>Enterprise air quality, <span className="text-flame-600">as a program</span></>}
         lede="Multi-site deployments, AMC partnerships, distributorships and compliance-ready IAQ documentation — one account team for your entire portfolio."
         crumbs={[['For Business']]}
       />
@@ -38,12 +38,12 @@ export default function ForBusiness() {
         <Reveal>
           <span className="kicker">What You Get</span>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight md:text-4xl">
-            Built for facility heads, <span className="text-forest-600">not just facilities</span>
+            Built for facility heads, <span className="text-flame-600">not just facilities</span>
           </h2>
           <ul className="mt-7 grid gap-4">
             {OFFERS.map(([t, b]) => (
               <li key={t} className="flex gap-3">
-                <Icon.Check className="mt-1 h-5 w-5 shrink-0 text-forest-600" />
+                <Icon.Check className="mt-1 h-5 w-5 shrink-0 text-flame-600" />
                 <span className="text-ink-700"><strong className="text-ink-900">{t}</strong> — {b}</span>
               </li>
             ))}
@@ -70,22 +70,22 @@ export default function ForBusiness() {
       </section>
 
       <section className="section section-dark relative overflow-hidden">
-        <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute -right-24 top-0 h-80 w-80 rounded-full bg-flame-400/10 blur-3xl" />
         <div className="container-x relative">
           <div className="mx-auto max-w-2xl text-center">
             <Reveal>
               <span className="kicker kicker-light">Partner With VayuGuard</span>
               <h2 className="mt-4 text-3xl font-extrabold text-white md:text-4xl">Grow with the clean-air economy</h2>
-              <p className="mt-3 text-forest-100/80">Join India's fastest-growing indoor air quality network as a channel partner.</p>
+              <p className="mt-3 text-flame-100/80">Join India's fastest-growing indoor air quality network as a channel partner.</p>
             </Reveal>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {PARTNERS.map((p, i) => (
               <Reveal key={p.title} delay={i}>
                 <div className="card !border-white/10 !bg-white/[0.06]">
-                  <div className="card-icon !bg-white/10 !text-emerald-300"><p.icon /></div>
+                  <div className="card-icon !bg-white/10 !text-flame-300"><p.icon /></div>
                   <h3 className="text-lg font-extrabold text-white">{p.title}</h3>
-                  <p className="mt-1.5 text-forest-100/70">{p.body}</p>
+                  <p className="mt-1.5 text-flame-100/70">{p.body}</p>
                 </div>
               </Reveal>
             ))}

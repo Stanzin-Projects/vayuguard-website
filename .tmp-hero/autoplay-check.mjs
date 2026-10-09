@@ -1,0 +1,12 @@
+import puppeteer from 'puppeteer'
+const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--disable-dev-shm-usage'] })
+const page = await browser.newPage()
+await page.setViewport({ width: 375, height: 820 })
+await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'no-preference' }])
+await page.goto('http://127.0.0.1:4173/', { waitUntil: 'networkidle2' })
+const before = await page.evaluate(() => { const v = document.querySelector('video'); return { paused: v.paused, t: v.currentTime } })
+await page.evaluate(() => document.querySelector('video').scrollIntoView({ block: 'center' }))
+await new Promise((r) => setTimeout(r, 1500))
+const after = await page.evaluate(() => { const v = document.querySelector('video'); return { paused: v.paused, t: Math.round(v.currentTime * 10) / 10 } })
+console.log(JSON.stringify({ before, after }))
+await browser.close()

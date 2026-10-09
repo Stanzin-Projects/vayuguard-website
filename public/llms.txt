@@ -1,0 +1,80 @@
+# VayuGuard — Make-in-India Air Purification
+
+> VayuGuard Climate Tech Pvt Ltd is a New Delhi–based climate-tech company (founded 2019) that builds air purification for central HVAC systems and individual rooms. Its patented HCAC (Hybrid Central Air Cleaner) treats air inside AHUs and ducts with washable electro-charged media; VayuShield retrofits existing split and cassette ACs into purifiers; UVGI systems disinfect air with UV-C; ANOP (Plasm-ION) bipolar ionization neutralizes odours and VOCs in ducts; and VayuView monitors deliver live PM2.5, PM10, CO₂ and TVOC dashboards. VayuGuard serves homes, offices, hospitals, schools, hotels and industry across Delhi NCR and India, with free site assessments and quotes within 48 hours.
+
+## Products
+
+### For HVAC & Ducts
+
+- **HCAC-A 1000 CFM** — patented in-duct Hybrid Central Air Cleaner for AHUs/ducts up to 1000 CFM; washable electro-charged media, low pressure drop, sub-micron PM2.5 capture. → /products#hcac-a-1000
+- **HCAC-A 2000 CFM** — the 2000 CFM HCAC for larger AHUs and central plants. → /products#hcac-a-2000
+- **HCAC-CS 1000 CFM** — cassette-format HCAC that drops into standard ceiling grids; tool-less maintenance. → /products#hcac-cs-1000
+- **HCAC Slim** — ultra-slim in-duct purifier for shallow ceilings and tight ducts. → /products#hcac-slim
+- **FCU-HCAC** — hybrid purification sized for fan coil units (hotels, clinics, offices). → /products#fcu-hcac
+- **Ceiling Suspended Unit** — standalone ceiling-suspended cleaner for halls, showrooms and waiting areas; no floor footprint. → /products#csu
+- **Pre Filter** — washable first-stage HVAC filtration for lint, hair and debris. → /products#pre-filter
+- **Energy Recovery Ventilator (ERV)** — fresh-air ventilation with sensible and latent heat recovery. → /products#erv
+
+### For Rooms & Spaces
+
+- **VayuShield for Split AC** — retractable HEPA-grade module that turns existing split ACs into purifiers; tool-less install. → /products#vayushield-split
+- **VayuShield for Cassette AC** — the same module engineered for ceiling cassette ACs. → /products#vayushield-cassette
+- **HRAC S / M / XL** — standalone 3-stage hybrid room air cleaners (mechanical + electro-charged + UV-C) for small, medium and large rooms. → /products#hrac-small
+- **Kitchen Air Purifier** — cuts smoke, grease mist and cooking odour from commercial kitchen air. → /products#kitchen-unit
+- **Air Flushing Machine** — Indian-patented HEPA-equivalent unit clearing post-construction dust, VOCs and microbes. → /products#afm
+
+### UVGI & Odour Control
+
+- **Duct Mount UVGI** — in-duct UV-C germicidal irradiation; SHIELD-tested dosage kills viruses, bacteria and fungi. → /products#uvgi-duct
+- **Upper Room UVGI** — upper-room UV-C that disinfects occupied spaces continuously, safely above head height. → /products#uvgi-upper
+- **ANOP In-Duct** — UL-certified bipolar ionization for odours, VOCs and smoke inside HVAC loops; ozone-safe. → /products#anop-duct
+- **ANOP Candle Unit** — standalone bipolar ionizer for washrooms, meeting rooms and small spaces. → /products#anop-candle
+- **ANOB Cabinet Unit** — cabinet-format bipolar ionization for larger rooms and zoned HVAC. → /products#anob
+- **Plasm-ION Bipolar** — UL-certified ionization module targeting PM0.1, VOCs and odour molecules. → /products#plasm-ion
+- **Plasm-ION Wearable** — personal ionizer pendant creating a cleaner breathing zone; USB-C, zero consumables. → /products#plasm-ion-wearable
+
+### Gas Phase Filtration
+
+- **Activated Carbon Filter** — adsorbs odours, VOCs and reactive gases in AHUs and fresh-air units. → /products#activated-carbon
+- **Granular Carbon Filter** — deep-bed granular carbon for heavy industrial gas loads and corrosive gases. → /products#granular-carbon
+- **Chemical & Gas Phase Filtration** — impregnated media engineered for SO₂, NOₓ, H₂S and ammonia. → /products#chemical-gas-phase
+- **V-Shape Absorber** — V-formation cassettes maximizing gas-phase media area in standard AHU sections. → /products#v-shape-absorber
+
+### Monitoring & Software
+
+- **VayuView Indoor Monitor** — real-time indoor PM2.5, PM10, CO₂, TVOC with cloud dashboards, alerts and BMS/API integration. → /products#vayuview-indoor
+- **VayuView Outdoor Monitor** — weatherproof ambient AQI monitoring for campuses, townships and industrial boundaries. → /products#vayuview-outdoor
+- **VayuView Cloud Dashboard** — multi-site IAQ console with threshold alerts, AMC logs and LEED/IGBC/NABH exports. → /products#vayuview-dashboard
+
+### Specialized
+
+- **HEMAC STP Solution** — odour and harmful-gas control purpose-built for sewage treatment plants. → /products#hemac-stp
+
+## Solutions
+
+- **Homes & apartments** — VayuShield, HRAC and VayuView for bedrooms, living rooms and balconies. → /solutions#homes
+- **Offices & workspaces** — HCAC across AHUs, ANOP odour control, live IAQ dashboards; LEED/IGBC-friendly documentation. → /solutions#offices
+- **Hospitals & healthcare** — UVGI plus washable HCAC filtration for NABH-aligned infection control in wards, OTs and ICUs. → /solutions#healthcare
+- **Schools & institutes** — phased clean-classroom rollouts with per-classroom AQI displays. → /solutions#schools
+- **Hotels & hospitality** — odour-free HVAC loops and discreet in-room purification. → /solutions#hospitality
+- **Industry & warehouses** — dust, fume and odour control at scale. → /solutions#industry
+
+## Frequently asked questions
+
+**What is the VayuGuard HCAC and how does it work?** The HCAC (Hybrid Central Air Cleaner) is a patented, made-in-India purification stage installed inside AHUs and HVAC ducts. Air passes through washable electro-charged media that captures sub-micron particles like PM2.5 with very low pressure drop, so the entire building breathes filtered air from one central system.
+
+**Does VayuShield work with existing split or cassette ACs?** Yes. VayuShield is a retractable module for standard split and cassette AC indoor units; it installs tool-less in minutes and adds HEPA-grade filtration to the AC airflow.
+
+**How does UVGI kill airborne pathogens?** UV-C light at germicidal wavelengths breaks the DNA/RNA of viruses, bacteria and fungi so they cannot replicate. Upper-room units disinfect occupied spaces continuously; in-duct versions treat air moving through HVAC systems.
+
+**Do VayuGuard systems need filter replacement?** The core HCAC media is washable and reusable — rinse on schedule instead of buying filters. Room units use a washable pre-filter plus long-life stages; VayuView alerts when any stage needs attention.
+
+**How much does a system cost?** Pricing depends on the space and configuration. VayuGuard provides free site assessments across Delhi NCR and quotes within 48 hours.
+
+## Contact
+
+- Website: https://www.vayuguard.com
+- Location: New Delhi, Delhi NCR, India
+- Phone: +91 90000 00000 (placeholder — replace with real number)
+- Email: hello@vayuguard.com (placeholder — replace with real address)
+- Free consultation: https://www.vayuguard.com/contact

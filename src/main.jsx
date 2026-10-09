@@ -4,10 +4,17 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root')
+
+ReactDOM.createRoot(container).render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>
 )
+
+// Prerender hook: @prerenderer/renderer-puppeteer snapshots after this event.
+// A plain setTimeout is used (not rAF) because headless Chrome may never fire
+// animation frames before the first paint. 400ms is ample for React's commit.
+setTimeout(() => document.dispatchEvent(new Event('render-event')), 400)

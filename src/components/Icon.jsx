@@ -6,9 +6,9 @@ export const Icon = {
     <svg viewBox="0 0 24 24" fill="none" {...p}>
       <defs>
         <linearGradient id="vg-leaf-grad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#4da17e" />
-          <stop offset="55%" stopColor="#14805d" />
-          <stop offset="100%" stopColor="#0e5c41" />
+          <stop offset="0%" stopColor="#ffc9ba" />
+          <stop offset="55%" stopColor="#e07657" />
+          <stop offset="100%" stopColor="#b8492e" />
         </linearGradient>
         <linearGradient id="vg-leaf-sheen" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#fff" stopOpacity="0.55" />
@@ -16,7 +16,7 @@ export const Icon = {
         </linearGradient>
       </defs>
       {/* stem */}
-      <path d="M12.7 21.2 11.6 13.6" stroke="#0b3d2e" strokeWidth="1.1" strokeLinecap="round" />
+      <path d="M12.7 21.2 11.6 13.6" stroke="#61290f" strokeWidth="1.1" strokeLinecap="round" />
       {/* blade */}
       <path
         d="M11.6 13.6C11.2 8.4 14.2 3.4 19.9 2.1c.9 3.6-.2 8.3-3.3 11.3-2 1.9-4 2.1-5 .2Z"
@@ -30,7 +30,7 @@ export const Icon = {
       {/* midrib + veins */}
       <path
         d="M11.6 13.6C13.8 12.9 16.4 11.6 18.6 9.5M13 10.7c1-.2 2-.6 2.9-1.3M13.9 8c.8-.2 1.6-.5 2.3-1M14.7 5.4c.7-.2 1.4-.5 2-.9"
-        stroke="#0b3d2e"
+        stroke="#61290f"
         strokeOpacity="0.45"
         strokeWidth="0.7"
         strokeLinecap="round"
@@ -142,16 +142,19 @@ export const Icon = {
   X: (p) => (
     <svg viewBox="0 0 24 24" fill="currentColor" {...p}><path d="M18.9 2H22l-6.77 7.74L23.2 22h-6.24l-4.9-6.4L6.5 22H3.35l7.24-8.28L2.4 2h6.4l4.42 5.85L18.9 2Zm-1.1 18.1h1.73L7.9 3.8H6.04L17.8 20.1Z" /></svg>
   ),
+  Close: (p) => (
+    <svg viewBox="0 0 24 24" {...base} strokeWidth={2.2} {...p}><path d="M18 6 6 18M6 6l12 12" /></svg>
+  ),
   YouTube: (p) => (
     <svg viewBox="0 0 24 24" fill="currentColor" {...p}><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z" /></svg>
   ),
 }
 
-export const BrandMark = ({ light = false, className = 'w-11 h-11' }) => (
-  <svg viewBox="0 0 48 48" fill="none" className={className} aria-hidden="true">
-    <rect x="2" y="2" width="44" height="44" rx="12" fill={light ? 'rgba(255,255,255,0.1)' : '#e6f4ec'} />
-    <path d="M13 14h22L24.5 34 13 14Z" stroke={light ? '#ffffff' : '#0f6f4f'} strokeWidth="2.6" strokeLinejoin="round" fill="none" />
-    <path d="M18.5 14 24.5 25l6-11" stroke={light ? '#ffffff' : '#0f6f4f'} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-    <path d="M24.5 34v-9" stroke={light ? '#ffffff' : '#0f6f4f'} strokeWidth="2.6" strokeLinecap="round" />
-  </svg>
+export const BrandMark = ({ className = 'h-11 w-auto' }) => (
+  <img
+    src="/vayuguard-logo.png"
+    alt="VayuGuard — Innovation. Wellbeing. Sustainability."
+    className={`block ${className}`}
+    draggable={false}
+  />
 )

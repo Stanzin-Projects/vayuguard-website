@@ -70,14 +70,21 @@ export default function LiveAqi() {
     <>
       <PageHero
         kicker="Live Air Quality"
-        title={<>Know your air, <span className="text-forest-600">every second</span></>}
+        title={<>Know your air, <span className="text-flame-600">every second</span></>}
         lede="Outdoor AQI for Delhi NCR plus live indoor readings from the VayuView monitor network — the same dashboard our clients get with every deployment."
         crumbs={[['Live AQI']]}
       />
 
+      {/* answer-first summary for search engines & AI assistants */}
+      <section className="container-x pt-10">
+        <p className="max-w-4xl text-[0.98rem] leading-relaxed text-ink-500">
+          This page is a live demo of the VayuView dashboard that ships with every VayuGuard deployment: outdoor AQI for Delhi NCR beside indoor PM2.5, PM10, CO₂ and TVOC readings, each flagged green when within the healthy range VayuView alerts on. Facilities teams and families use the same interface to verify — with numbers, not promises — that their air is actually cleaner after installation.
+        </p>
+      </section>
+
       <section className="container-x py-14">
         <Reveal>
-          <div className="grid items-center gap-10 rounded-3xl border border-gray-200/80 bg-white p-8 shadow-xl shadow-forest-900/5 md:p-10 lg:grid-cols-[1.2fr_2fr]">
+          <div className="grid items-center gap-10 rounded-3xl border border-gray-200/80 bg-white p-8 shadow-xl shadow-flame-900/5 md:p-10 lg:grid-cols-[1.2fr_2fr]">
             {/* gauge */}
             <div className="mx-auto text-center">
               <div
@@ -101,10 +108,10 @@ export default function LiveAqi() {
             <div>
               <div className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
                 <h2 className="text-2xl font-extrabold">Indoor — VayuView Demo Unit</h2>
-                <span className="chip !bg-forest-50">
+                <span className="chip !bg-flame-50">
                   <span className="relative flex h-2 w-2">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
-                    <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-flame-500 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-flame-500" />
                   </span>
                   Live
                 </span>
@@ -117,9 +124,9 @@ export default function LiveAqi() {
         </Reveal>
 
         <Reveal delay={1}>
-          <div className="mt-6 rounded-xl border border-dashed border-forest-600/35 bg-forest-50 px-6 py-4 text-[0.88rem] text-ink-500">
-            <strong className="text-forest-800">Demo mode:</strong> indoor values are simulated to show how a VayuView dashboard behaves. Outdoor AQI is indicative data for Delhi NCR. Deploy a real monitor —{' '}
-            <Link to="/contact" className="font-bold text-forest-700">talk to us →</Link>
+          <div className="mt-6 rounded-xl border border-dashed border-flame-600/35 bg-flame-50 px-6 py-4 text-[0.88rem] text-ink-500">
+            <strong className="text-flame-800">Demo mode:</strong> indoor values are simulated to show how a VayuView dashboard behaves. Outdoor AQI is indicative data for Delhi NCR. Deploy a real monitor —{' '}
+            <Link to="/contact" className="font-bold text-flame-700">talk to us →</Link>
           </div>
         </Reveal>
 
@@ -144,7 +151,7 @@ export default function LiveAqi() {
 
       {/* dark features */}
       <section className="section section-dark relative overflow-hidden">
-        <div className="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" />
+        <div className="pointer-events-none absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-flame-400/10 blur-3xl" />
         <div className="container-x relative">
           <SectionHead center kicker-light kicker="VayuView Network" title="Monitoring that closes the loop" body="Every VayuGuard deployment includes live IAQ monitoring — so purification is verified, not assumed." />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -155,9 +162,9 @@ export default function LiveAqi() {
             ].map((f, i) => (
               <Reveal key={f.title} delay={i}>
                 <div className="card !border-white/10 !bg-white/[0.06]">
-                  <div className="card-icon !bg-white/10 !text-emerald-300"><f.icon /></div>
+                  <div className="card-icon !bg-white/10 !text-flame-300"><f.icon /></div>
                   <h3 className="text-lg font-extrabold text-white">{f.title}</h3>
-                  <p className="mt-1.5 text-forest-100/70">{f.body}</p>
+                  <p className="mt-1.5 text-flame-100/70">{f.body}</p>
                 </div>
               </Reveal>
             ))}
